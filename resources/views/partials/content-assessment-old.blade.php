@@ -71,17 +71,13 @@
                     if ( $min_price ) {
                       $args['meta_query'][] = [
                         'key'     => 'hcf_price',
-                        'value'   => $min_price,
-                        'compare' => '>=',
-                        'type'    => 'NUMERIC'
+                        'value'   => $min_price
                       ];
                     }
                     if ( $max_price ) {
                       $args['meta_query'][] = [
                         'key'     => 'hcf_price',
-                        'value'   => $max_price,
-                        'compare' => '<=',
-                        'type'    => 'NUMERIC'
+                        'value'   => $max_price
                       ];
                     }
                     $search_query = new WP_Query( $args );
@@ -93,7 +89,7 @@
                       wp_reset_postdata();
                       ?>
                     <?php else: ?>
-                      <p>No result found.</p>
+                      <p>No Resources found.</p>
                     <?php endif; ?>
                   </div>
                 <?php endif; ?>

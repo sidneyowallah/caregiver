@@ -1,0 +1,167 @@
+#assesment-select {
+  margin-top: 50px;
+}
+
+.assesment-select-header {
+  margin-bottom: 50px;
+
+  h1 {
+    text-transform: uppercase;
+    font-size: 1.8em;
+    font-weight: 600;
+  }
+
+  p {
+    font-size: 1.5em;
+  }
+}
+
+.bs-stepper-circle {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  width: 1.5em;
+  height: 1.5em;
+  padding: 0.5em 0;
+  margin: 0.2rem;
+  line-height: 1em;
+  color: #fff;
+  background-color: #6c757d;
+  border-radius: 1em;
+}
+
+.bs-stepper .step-trigger {
+  padding: 2px;
+}
+
+.bs-stepper-content {
+  padding: 20px 20px;
+}
+
+.active .bs-stepper-circle {
+  background-color: #ca6015;
+}
+
+label {
+  display: block;
+  margin-bottom: 1em;
+  font-size: 2em;
+  text-align: center;
+  color: #666;
+}
+
+.form-check-inline {
+  padding-left: 30px;
+  margin-right: 0;
+}
+
+.form-check-label {
+  margin-bottom: 0;
+  display: block;
+  font-size: 20px;
+  color: #666;
+  padding: 20px 0;
+  cursor: pointer;
+  padding-left: 22px;
+  text-indent: -22px;
+}
+
+.form-check {
+  input[type=radio] {
+    position: absolute;
+    margin-top: 0.3rem;
+    margin-left: -1.25rem;
+    border: 0;
+    width: 1em;
+    height: 1em;
+    text-align: left;
+  }
+}
+
+.form-button,
+.rerun-button {
+  padding: 10px 20px;
+  border-radius: 3px;
+  background: #ca6015;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: inline-block;
+  cursor: pointer;
+
+  &:hover {
+    background: #e66400;
+    color: white;
+  }
+}
+
+.btn-success {
+  padding: 10px 20px;
+  border-radius: 3px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: inline-block;
+  cursor: pointer;
+  background-color: #28a745;
+  border-color: #28a745;
+
+  &:hover {
+    color: #fff;
+    background-color: #1e7e34;
+    border-color: #1c7430;
+  }
+}
+
+.bs-stepper-header {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.resources-found {
+  color: #fff;
+  margin-top: 40px;
+  background: #28a745;
+
+  h2 {
+    margin: 5px;
+  }
+}
+
+.resources-not-found {
+  color: #fff;
+  margin-top: 40px;
+  background: #dc3545;
+
+  h2 {
+    margin: 5px;
+  }
+
+  p {
+    margin: 10px;
+  }
+}
+
+.form-result {
+  margin-bottom: 50px;
+
+  h3 {
+    color: #ca6015;
+  }
+
+  p {
+    font-size: 1.2em;
+  }
+}
+
+.form-result-card {
+  text-decoration: none !important;
+  color: black;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  -webkit-transition: all 1s;
+  -o-transition: all 1s;
+  transition: all 1s;
+}

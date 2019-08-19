@@ -1,6 +1,8 @@
 // import external dependencies
 import 'jquery';
 
+
+
 // Import everything from autoload
 import './autoload/**/*'
 
@@ -9,6 +11,7 @@ import Router from './util/Router';
 import common from './routes/common';
 import home from './routes/home';
 import aboutUs from './routes/about';
+import templateAssessment from './routes/templateAssessment';
 
 // import then needed Font Awesome functionality
 import { library, dom } from '@fortawesome/fontawesome-svg-core';
@@ -31,6 +34,8 @@ const routes = new Router({
   home,
   // About Us page, note the change from about-us to aboutUs.
   aboutUs,
+  // Assessment page
+  templateAssessment,
 });
 
 // Load Events

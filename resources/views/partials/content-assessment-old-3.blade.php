@@ -8,7 +8,6 @@
 
 <?php
 $sixty = $dementia = $caregiving = $veteran = $employed = $healthcare = $legal = $finance = $finance = $support = $selfcare = 'no';
-$submit = false;
 
 
   if (isset($_GET["sixty"])) {
@@ -91,11 +90,7 @@ $submit = false;
     }
   }
 
-  // var_dump($_GET);
-
-  if(isset($_GET['submit']) && !empty($_GET['submit'])) {
-    $submit = true;
-  }
+  var_dump($_GET);
 
 ?>
 
@@ -106,105 +101,92 @@ $submit = false;
       <div class="row">
           <div class="col">
             <div class="assessment-results">
+
+                <?php if (
+                $sixty = "yes"
+                || $dementia = "yes"
+                || $caregiving = "yes"
+                || $veteran = "yes"
+                || $employed = "yes"
+                || $legal = "yes"
+                || $finance = "yes"
+                || $support = "yes"
+                || $selfcare = "yes"
+
+                ): ?>
                   <div class="search-result">
+
                     <?php
-                      $args = [
-                        'posts_per_page' => - 1,
-                        'tag_slug__in'     => empty( $include ) ? [ 0 ] : $include,
-                      ];
 
-                      if ( $sixty == "yes" ) { $args['tag_slug__in'][] = "classes"; }
-                      if ( $dementia == "yes" ) { $args['tag_slug__in'][] = "memory-care"; }
-                      if ( $caregiving == "yes" ) { $args['tag_slug__in'][] = "caregiving"; }
-                      if ( $veteran == "yes" ) { $args['tag_slug__in'][] = "veteran"; }
-                      if ( $employed == "yes" ) { $args['tag_slug__in'][] = "employed"; }
-                      if ( $healthcare == "yes" ) { $args['tag_slug__in'][] = "healthcare"; }
-                      if ( $legal == "yes" ) { $args['tag_slug__in'][] = "legal"; }
-                      if ( $finance == "yes" ) { $args['tag_slug__in'][] = "finance"; }
-                      if ( $support == "yes" ) { $args['tag_slug__in'][] = "support"; }
-                      if ( $selfcare== "yes" ) { $args['tag_slug__in'][] = "selfcare"; }
+                    $args = [
+                      'posts_per_page' => - 1,
+                      'tag_slug__in'     => empty( $include ) ? [ 0 ] : $include,
+                    ];
 
-                      $search_query = new WP_Query( $args );
+                    echo $sixty;
+                    echo $dementia;
+                    echo $caregiving;
+
+
+
+
+
+
+                    if ( $sixty ) { $args['tag_slug__in'][] = "classes"; }
+                    if ( $dementia ) { $args['tag_slug__in'][] = "memory-care"; }
+                    if ( $caregiving ) { $args['tag_slug__in'][] = "caregiving"; }
+                    if ( $veteran ) { $args['tag_slug__in'][] = "veteran"; }
+                    if ( $employed ) { $args['tag_slug__in'][] = "employed"; }
+                    if ( $healthcare ) { $args['tag_slug__in'][] = "healthcare"; }
+                    if ( $legal ) { $args['tag_slug__in'][] = "legal"; }
+                    if ( $finance ) { $args['tag_slug__in'][] = "finance"; }
+                    if ( $support ) { $args['tag_slug__in'][] = "support"; }
+                    if ( $selfcare ) { $args['tag_slug__in'][] = "selfcare"; }
+
+
+                    $search_query = new WP_Query( $args );
                     ?>
 
-                      <?php if ( $search_query->have_posts() ): ?>
-                        <div class='container form-results'>
+                    <?php if ( $search_query->have_posts() ): ?>
+
+
+
+
+                      <div class='container form-results'>
                           <div class="row">
-                            <div class='col alert resources-found'>
+                            <div class='col resources-found'>
                               <h2>Resources Found.</h2>
                             </div>
                           </div>
-                          <div class="row">
-                            <?php while ( $search_query->have_posts() ) : $search_query->the_post();?>
-                              <div class='col-md-4 form-result'>
-                                  <div class='card-body h-100 form-result-card shadow-sm'>
-                                    <h3><?php the_title(); ?></h3>
-                                    <p><?php the_excerpt(); ?></p>
-                                    <a href="<?php the_permalink(); ?>" class="btn btn-primary active" role="button" aria-pressed="true">Read More</a>
-                                  </div>
-                              </div>
-                            <?php endwhile ?>
-                          </div>
-                          <div class="row">
-                              <div class='col'>
-                                  <a href="/questionnaire/" class="btn btn-info btn-lg active" role="button" aria-pressed="true">Reset Assessment</a>
-
-                              </div>
-                            </div>
-                        </div>
-                      <?php else:?>
-                        <?php if ($submit == true): ?>
                         <div class="row">
-                          <div class='col alert resources-not-found'>
-                            <h2>Resources Not Found.</h2>
-                         </div>
-                        </div>
-                        <div class="row">
-                            <div class='col'>
-                                <a href="/questionnaire/" class="btn btn-info btn-lg active" role="button" aria-pressed="true">Reset Assessment</a>
-                            </div>
-                        </div>
-                        <?php else: ?>
-                        <section>
-                            <div id="assesment-select" class="container text-center">
-                                <div class="row">
-                                    <div class='col assesment-select-header'>
-                                        <h1>choose quiz length</h1>
-                                        <p>Do you want us to recommend resources based on your answers to a questionnaire, or do you want to select from a list of topics yourself?</p>
-
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class='col assesment-select'>
-                                        <button class="btn form-button" type="button" id="long">Fill Questionaire</button>
-                                    </div>
-                                    <div class='col assesment-select'>
-                                        <button class="btn form-button" type="button" id="short">Select from list of topics</button>
-                                    </div>
+                          <?php while ( $search_query->have_posts() ) : $search_query->the_post();?>
+                            <div class='col-md-4 form-result'>
+                                <div class='card-body h-100 form-result-card shadow-sm'>
+                                  <h3><?php the_title(); ?></h3>
+                                  <p><?php the_excerpt(); ?></p>
+                                  <a href="<?php the_permalink(); ?>" class="btn btn-primary active" role="button" aria-pressed="true">Read More</a>
                                 </div>
                             </div>
-
-                        </section>
-                        <?php endif; ?>
-
-                      <?php endif; ?>
-                      <?php wp_reset_postdata(); ?>
+                          <?php endwhile ?>
+                        </div>
+                      </div>
+                    <?php else: ?>
+                      <p>Inner No Resources found.</p>
+                    <?php endif; ?>
                   </div>
-           </div>
+                <?php else: ?>
+                  <p>Outer No Resources found.</p>
+                <?php endif; ?>
+                <?php wp_reset_postdata(); ?>
+            </div>
           </div>
       </div>
     </div>
   </section>
 
 
-
-
 <section>
-    <div id="short-assesment-form" class="container" style="display:none">
-        {{-- this is the short assesment --}}
-      </div>
-    <div id="long-assesment-form" class="container flex-grow-1 flex-shrink-0 py-5 text-center" style="display:none">
+    <div class="container flex-grow-1 flex-shrink-0 py-5 text-center">
       <div class="mb-5 p-4 bg-white shadow-sm">
         <div id="stepperForm" class="bs-stepper">
           <div class="bs-stepper-header" role="tablist">
@@ -282,7 +264,7 @@ $submit = false;
           </div>
           <div class="bs-stepper-content">
 
-            <form>
+            <form class="advanced-search-form">
                 <div id="tab-1" role="tabpanel" class="bs-stepper-pane" aria-labelledby="stepperFormtrigger1">
                   <fieldset class="form-group">
                     <div class="row">
@@ -299,8 +281,7 @@ $submit = false;
                       </div>
                     </div>
                   </fieldset>
-                  <button class="btn form-button sixty-next-btn" type="button" disabled="disabled" onclick="stepperForm.next()">Next</button>
-
+                  <button class="btn form-button" type="button" onclick="stepperForm.next()">Next</button>
                 </div>
 
                 <div id="tab-2" role="tabpanel" class="bs-stepper-pane" aria-labelledby="stepperFormtrigger2">
@@ -316,12 +297,11 @@ $submit = false;
                               <input class="form-check-input" type="radio" class="form-control" name="dementia" value="no">
                               <label class="form-check-label" for="dementia"> No</label>
                             </div>
-                            <div class="show-form-error alert alert-danger" role="alert">This website is for caregivers of older adults and individuals with dementia we encouraging you to call United Way 2-1-1</div>
                         </div>
                       </div>
                     </fieldset>
                     <button class="btn form-button" type="button" onclick="stepperForm.previous()">Previous</button>
-                    <button class="btn form-button dementia-next-btn" type="button" disabled="disabled" onclick="stepperForm.next()">Next</button>
+                    <button class="btn form-button" type="button" onclick="stepperForm.next()">Next</button>
                 </div>
 
                 <div id="tab-3" role="tabpanel" class="bs-stepper-pane" aria-labelledby="stepperFormtrigger3">
@@ -341,7 +321,7 @@ $submit = false;
                     </div>
                   </fieldset>
                   <button class="btn form-button" type="button" onclick="stepperForm.previous()">Previous</button>
-                  <button class="btn form-button caregiving-next-btn" type="button" disabled="disabled" onclick="stepperForm.next()">Next</button>
+                  <button class="btn form-button" type="button" onclick="stepperForm.next()">Next</button>
                 </div>
 
                 <div id="tab-4" role="tabpanel" class="bs-stepper-pane" aria-labelledby="stepperFormtrigger4">
@@ -361,7 +341,7 @@ $submit = false;
                     </div>
                   </fieldset>
                   <button class="btn form-button" type="button" onclick="stepperForm.previous()">Previous</button>
-                  <button class="btn form-button veteran-next-btn" type="button" disabled="disabled" onclick="stepperForm.next()">Next</button>
+                  <button class="btn form-button" type="button" onclick="stepperForm.next()">Next</button>
                 </div>
 
                 <div id="tab-5" role="tabpanel" class="bs-stepper-pane" aria-labelledby="stepperFormtrigger5">
@@ -385,7 +365,7 @@ $submit = false;
                     </div>
                   </fieldset>
                   <button class="btn form-button" type="button" onclick="stepperForm.previous()">Previous</button>
-                  <button class="btn form-button employed-next-btn" type="button" disabled="disabled" onclick="stepperForm.next()">Next</button>
+                  <button class="btn form-button" type="button" onclick="stepperForm.next()">Next</button>
                 </div>
 
                 <div id="tab-6" role="tabpanel" class="bs-stepper-pane" aria-labelledby="stepperFormtrigger6">
@@ -405,7 +385,7 @@ $submit = false;
                     </div>
                   </fieldset>
                   <button class="btn form-button" type="button" onclick="stepperForm.previous()">Previous</button>
-                  <button class="btn form-button healthcare-next-btn" type="button" disabled="disabled" onclick="stepperForm.next()">Next</button>
+                  <button class="btn form-button" type="button" onclick="stepperForm.next()">Next</button>
                 </div>
 
                 <div id="tab-7" role="tabpanel" class="bs-stepper-pane" aria-labelledby="stepperFormtrigger7">
@@ -425,7 +405,7 @@ $submit = false;
                     </div>
                   </fieldset>
                   <button class="btn form-button" type="button" onclick="stepperForm.previous()">Previous</button>
-                  <button class="btn form-button caregiving-next-btn" type="button" disabled="disabled" onclick="stepperForm.next()">Next</button>
+                  <button class="btn form-button" type="button" onclick="stepperForm.next()">Next</button>
                 </div>
 
                 <div id="tab-8" role="tabpanel" class="bs-stepper-pane" aria-labelledby="stepperFormtrigger8">
@@ -445,7 +425,7 @@ $submit = false;
                     </div>
                   </fieldset>
                   <button class="btn form-button" type="button" onclick="stepperForm.previous()">Previous</button>
-                  <button class="btn form-button legal-next-btn" type="button" disabled="disabled" onclick="stepperForm.next()">Next</button>
+                  <button class="btn form-button" type="button" onclick="stepperForm.next()">Next</button>
                 </div>
 
                 <div id="tab-9" role="tabpanel" class="bs-stepper-pane" aria-labelledby="stepperFormtrigger9">
@@ -465,7 +445,7 @@ $submit = false;
                     </div>
                   </fieldset>
                   <button class="btn form-button" type="button" onclick="stepperForm.previous()">Previous</button>
-                  <button class="btn form-button support-next-btn" type="button" disabled="disabled" onclick="stepperForm.next()">Next</button>
+                  <button class="btn form-button" type="button" onclick="stepperForm.next()">Next</button>
                 </div>
 
                 <div id="tab-10" role="tabpanel" class="bs-stepper-pane" aria-labelledby="stepperFormtrigger10">
@@ -485,7 +465,7 @@ $submit = false;
                     </div>
                   </fieldset>
                   <button class="btn form-button" type="button" onclick="stepperForm.previous()">Previous</button>
-                  <button class="btn btn-success finance-next-btn" type="submit" disabled="disabled" name="submit" value="submit" >Submit</button>
+                  <button type="submit" class="btn btn-success">Submit</button>
                 </div>
             </form>
           </div>
@@ -500,13 +480,11 @@ $submit = false;
 
 <script src="https://cdn.jsdelivr.net/npm/bs-stepper/dist/js/bs-stepper.min.js"></script>
 <script>
-
+  var stepperFormNode = document.querySelector('#stepperForm')
   var stepperForm = new Stepper(document.querySelector('#stepperForm'), {
     animation: true
   })
-  // var stepperFormNode = document.querySelector('#stepperForm')
-  // stepperFormNode.addEventListener('show.bs-stepper', function (event) {
-  //   console.warn('show.bs-stepper', event)
-  // })
+  stepperFormNode.addEventListener('show.bs-stepper', function (event) {
+    console.warn('show.bs-stepper', event)
+  })
 </script>
-
